@@ -1,3 +1,4 @@
+import { HttpStatus } from '@nestjs/common'
 import { NextFunction, Request, Response } from 'express'
 
 function errorHandler(
@@ -8,11 +9,11 @@ function errorHandler(
 ) {
   console.error(err)
 
-  const statusCode = req.statusCode || 500
-  const error = err.message ?? 'Internal Server Error'
+  const statusCode = req.statusCode || HttpStatus.INTERNAL_SERVER_ERROR
+  const error = req.statusMessage || 'Internal Server Error'
   const responseObject = {
     statusCode,
-    errorMsg: error,
+    error,
   }
 
   res.status(statusCode).send(responseObject)

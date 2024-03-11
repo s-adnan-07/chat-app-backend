@@ -1,5 +1,5 @@
 import express from 'express'
-import { login, register } from '../controllers/auth.controller'
+import { login, logout, register } from '../controllers/auth.controller'
 import expressAsyncHandler from 'express-async-handler'
 
 const authRoutes = express.Router()
@@ -7,5 +7,7 @@ const authRoutes = express.Router()
 authRoutes.post('/register', expressAsyncHandler(register))
 
 authRoutes.post('/login', expressAsyncHandler(login))
+
+authRoutes.post('/logout', expressAsyncHandler(logout))
 
 export default authRoutes
