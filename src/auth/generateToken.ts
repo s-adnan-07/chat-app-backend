@@ -1,7 +1,7 @@
 import { Response } from 'express'
 import jwt from 'jsonwebtoken'
 import 'dotenv/config'
-import { Types } from 'mongoose'
+import UserJwtPayload from '../dtos/user-jwt.dto'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'MySecret'
 
@@ -11,12 +11,7 @@ const SIXTY_MINUTES = 60
 const SIXTY_SECONDS = 60
 const THOUSAND_MILLISECONDS = 1000
 
-interface NewUser {
-  _id: Types.ObjectId
-  username: string
-}
-
-function generateToken(newUser: NewUser, res: Response) {
+function generateToken(newUser: UserJwtPayload, res: Response) {
   const token = jwt.sign(newUser, JWT_SECRET, { expiresIn: '15d' })
 
   const maxAgeInMilliseconds =
