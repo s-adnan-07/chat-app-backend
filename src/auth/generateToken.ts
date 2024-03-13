@@ -1,6 +1,7 @@
 import { Response } from 'express'
 import jwt from 'jsonwebtoken'
 import 'dotenv/config'
+import { Types } from 'mongoose'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'MySecret'
 
@@ -10,8 +11,13 @@ const SIXTY_MINUTES = 60
 const SIXTY_SECONDS = 60
 const THOUSAND_MILLISECONDS = 1000
 
-function generateToken(username: string, res: Response) {
-  const token = jwt.sign({ userId: username }, JWT_SECRET, { expiresIn: '15d' })
+interface NewUser {
+  _id: Types.ObjectId
+  username: string
+}
+
+function generateToken(newUser: NewUser, res: Response) {
+  const token = jwt.sign(newUser, JWT_SECRET, { expiresIn: '15d' })
 
   const maxAgeInMilliseconds =
     FIFTEEN_DAYS *
@@ -22,7 +28,7 @@ function generateToken(username: string, res: Response) {
 
   res.cookie('jwt', token, {
     maxAge: maxAgeInMilliseconds,
-    httpOnly: true, // So cookie cant be accessed via javascript
+    httpOnly: true,
     sameSite: 'strict',
   })
 }

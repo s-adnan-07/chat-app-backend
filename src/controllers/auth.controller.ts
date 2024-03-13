@@ -45,7 +45,8 @@ export const login: RequestHandler<{}, {}, LoginUser> = async (req, res) => {
     throw new Error('Invalid email or password')
   }
 
-  generateToken(user.username, res)
+  const { _id, username } = user
+  generateToken({ _id, username }, res)
   sendResponse(res, HttpStatus.OK, `Welcome ${user.username}`)
 }
 

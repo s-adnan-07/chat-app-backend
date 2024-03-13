@@ -8,6 +8,6 @@ authRoutes.post('/register', expressAsyncHandler(register))
 
 authRoutes.post('/login', expressAsyncHandler(login))
 
-authRoutes.post('/logout', expressAsyncHandler(logout))
+authRoutes.post('/logout', logout)
 
 export default authRoutes
