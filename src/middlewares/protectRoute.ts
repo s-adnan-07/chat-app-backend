@@ -1,5 +1,5 @@
 import { HttpStatus } from '@nestjs/common'
-import { RequestHandler } from 'express'
+import { NextFunction, Request, RequestHandler, Response } from 'express'
 import jwt, { JsonWebTokenError } from 'jsonwebtoken'
 import 'dotenv/config'
 import { MessageParams } from '../controllers/message.controller'
@@ -7,10 +7,12 @@ import ChatMessage from '../dtos/chat-message.dto'
 import User from '../models/user.model'
 
 // This middleware needs to hace same generic type arguments as the controller it is protecting
-const protectRoute: RequestHandler<MessageParams, {}, ChatMessage> = async (
-  req,
-  res,
-  next,
+// Since we will be using this function for other routes we use generics
+
+const protectRoute = async <T, U>(
+  req: Request<T, {}, U>,
+  res: Response<{}>,
+  next: NextFunction,
 ) => {
   const token = req.cookies.jwt
 

@@ -10,7 +10,7 @@ import { Response } from 'express'
 function sendResponse(
   res: Response,
   statusCode: HttpStatus = HttpStatus.OK,
-  message: string | number | boolean = 'Success',
+  message: any = 'Success',
 ) {
   const responseObject = {
     statusCode,
