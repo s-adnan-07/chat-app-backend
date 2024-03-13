@@ -2,10 +2,16 @@ import { HttpStatus } from '@nestjs/common'
 import { Response } from 'express'
 
 /**
- * Function to send standard one-line response back to client
+ * Function to send standard response back to client
+ * @example
+ * {
+ *  statusCode: 200,
+ *  message: "Success"
+ * }
+ *
  * @param statusCode Standard HTTP status code
  * @param message Message to be sent as response
- * @param res Response object
+ * @param res Express response object
  */
 function sendResponse(
   res: Response,

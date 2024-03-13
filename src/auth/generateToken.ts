@@ -11,6 +11,11 @@ const SIXTY_MINUTES = 60
 const SIXTY_SECONDS = 60
 const THOUSAND_MILLISECONDS = 1000
 
+/**
+ * Function to generate jwt from user payload and save it to a cookie in request object
+ * @param newUser User jwt payload object to be signed
+ * @param res Express response object
+ */
 function generateToken(newUser: UserJwtPayload, res: Response) {
   const token = jwt.sign(newUser, JWT_SECRET, { expiresIn: '15d' })
 

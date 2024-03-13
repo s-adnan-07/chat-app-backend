@@ -13,8 +13,6 @@ export const register: RequestHandler<{}, {}, RegisterUser> = async (
 ) => {
   const { username, email } = req.body
 
-  // Need to add validation logic or middleware to check integrity of incoming data
-
   const user = await User.findOne({ email }).exec()
   if (user) {
     req.statusCode = HttpStatus.FORBIDDEN

@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser'
 import 'dotenv/config'
 
 import connectDB from './config/dB'
-import errorHandler from './middlewares/errorHandler'
+import globalErrorHandler from './middlewares/errorHandler'
 import authRoutes from './routes/auth.routes'
 import messageRoutes from './routes/message.routes'
 import UserSocket from './types/ws/UserWebSocket'
@@ -23,7 +23,7 @@ app.use('/user', userRoutes)
 app.get('/', (req, res) => res.send('Hello World'))
 
 // Error handling should be last in the middleware stack
-app.use(errorHandler)
+app.use(globalErrorHandler)
 
 const server = app.listen(PORT, async () => {
   await connectDB()

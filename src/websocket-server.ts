@@ -18,6 +18,11 @@ wss.on('connection', (ws: UserSocket) => {
   ws.on('close', () => console.log(`User '${ws.userName}' disconnected`))
 })
 
+/**
+ * Function to send real-time message to receiver.
+ * @param message Message to be sent to the receiving client
+ * @param receiverId Mongo document id of the client
+ */
 export const sendSocketMessage = (message: string, receiverId: string) => {
   wss.clients.forEach((client: UserSocket) => {
     if (client.userId === receiverId && client.readyState === ws.OPEN)

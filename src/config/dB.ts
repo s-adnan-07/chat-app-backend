@@ -12,6 +12,9 @@ function handleConnectionErrors(e: unknown) {
   console.log(e)
 }
 
+/**
+ * Function to extablish a connection to mongodb
+ */
 async function connectDB() {
   try {
     if (!MONGO_URI) throw new Error('No Connection URI defined')
