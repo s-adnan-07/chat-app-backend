@@ -4,7 +4,7 @@ import { HttpStatus } from '@nestjs/common'
 import ChatMessage from '../dtos/chat-message.dto'
 import Conversation from '../models/conversation.model'
 import Message from '../models/message.model'
-import { sendSocketMessage } from '../server'
+import { sendSocketMessage } from '../websocket-server'
 
 export interface MessageParams {
   id: string
@@ -42,10 +42,6 @@ export const sendMessage: RequestHandler<
 
   conversation.messages.push(newMessage._id)
   await Promise.all([conversation.save(), newMessage.save()])
-
-  // console.log('message sent', req.params.id)
-  // sendResponse(res)
-  // res.status(HttpStatus.CREATED).json(newMessage)
 
   // Send message to other user
   sendSocketMessage(message, id)
