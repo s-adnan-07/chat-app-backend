@@ -1,9 +1,7 @@
 import { Response } from 'express'
 import jwt from 'jsonwebtoken'
-import 'dotenv/config'
 import UserJwtPayload from '../dtos/user-jwt.dto'
-
-const JWT_SECRET = process.env.JWT_SECRET || 'MySecret'
+import { JWT_SECRET } from '../config/constants'
 
 const FIFTEEN_DAYS = 15
 const TWENTY_FOUR_HOURS = 24

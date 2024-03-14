@@ -1,8 +1,8 @@
 import { HttpStatus } from '@nestjs/common'
 import { NextFunction, Request, RequestHandler, Response } from 'express'
 import jwt, { JsonWebTokenError } from 'jsonwebtoken'
-import 'dotenv/config'
 import User from '../models/user.model'
+import { JWT_SECRET } from '../config/constants'
 
 // This middleware needs to hace same generic type arguments as the controller it is protecting
 // Since we will be using this function for other routes we use generics
@@ -29,7 +29,7 @@ const protectRoute = async <T, U>(
   try {
     // Invalid Tokens Throw error 'invalid signature'
     // Hence decoded will not be undefined
-    const { _id } = jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload
+    const { _id } = jwt.verify(token, JWT_SECRET) as jwt.JwtPayload
     const user = await User.findById(_id).select('-password').exec()
 
     if (!user) {

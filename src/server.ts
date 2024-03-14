@@ -1,6 +1,5 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
-import 'dotenv/config'
 
 import connectDB from './config/dB'
 import globalErrorHandler from './middlewares/errorHandler'
@@ -10,8 +9,8 @@ import UserSocket from './types/ws/UserWebSocket'
 import userRoutes from './routes/user.routes'
 import wss, { onSocketPreError } from './websocket-server'
 import authenticateToken from './auth/authenticateToken'
+import { PORT } from './config/constants'
 
-const PORT = process.env.PORT || 3000
 const app = express()
 
 app.use(express.json())

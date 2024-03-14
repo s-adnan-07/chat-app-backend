@@ -1,7 +1,5 @@
 import mongoose from 'mongoose'
-import 'dotenv/config'
-
-const MONGO_URI = process.env.MONGO_URI
+import { MONGO_URI } from './constants'
 
 function handleConnectionErrors(e: unknown) {
   if (e instanceof Error) {

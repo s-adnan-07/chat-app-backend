@@ -1,7 +1,5 @@
 import jwt from 'jsonwebtoken'
-import 'dotenv/config'
-
-const JWT_SECRET = process.env.JWT_SECRET
+import { JWT_SECRET } from '../config/constants'
 
 /**
  * Function to verify the token integrity during a websocket connection
