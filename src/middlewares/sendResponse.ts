@@ -23,6 +23,7 @@ function sendResponse(
     message,
   }
 
+  console.log(message)
   res.status(statusCode).send(responseObject)
 }
 
