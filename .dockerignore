@@ -1,0 +1,11 @@
+node_modules
+coverage
+dist
+src/__tests__
+.vscode
+.git
+.gitignore
+.prettierrc
+Dockerfile
+.dockerignore
+docker-compose.yml

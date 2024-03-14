@@ -1,0 +1,30 @@
+version: '3'
+services:
+  server:
+    container_name: server
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    ports:
+      - ${PORT}:${PORT}
+    restart: always
+    command: yarn start
+
+  database:
+    container_name: database
+    image: mongo:7.0.5
+    env_file:
+      - .env
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data/configdb
+      - mongo:/data/db
+    restart: always
+
+volumes:
+  mongo:
