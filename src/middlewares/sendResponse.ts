@@ -24,7 +24,7 @@ function sendResponse(
   }
 
   console.log(message)
-  res.status(statusCode).send(responseObject)
+  res.status(statusCode).json(responseObject)
 }
 
 export default sendResponse

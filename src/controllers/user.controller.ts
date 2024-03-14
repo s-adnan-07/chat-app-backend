@@ -1,18 +1,27 @@
 import { HttpStatus } from '@nestjs/common'
-import { Request, RequestHandler, Response } from 'express'
+import { RequestHandler } from 'express'
 import GetUserResponse from '../dtos/get-user.dto'
 import sendResponse from '../middlewares/sendResponse'
-import User from '../models/user.model'
 import {
   checkExistingEmail,
   checkExistingUserName,
 } from '../middlewares/checkExisting'
 
+/**
+ * Function to view user details (username, email)
+ * @param req Express request object
+ * @param res Express response object
+ */
 export const viewUser: RequestHandler<{}, GetUserResponse> = (req, res) => {
   const { email, username } = req.user
   res.status(HttpStatus.OK).json({ email, username })
 }
 
+/**
+ * Function to update user details (username, email)
+ * @param req Express request object
+ * @param res Express response object
+ */
 export const updateUser: RequestHandler<{}, {}, GetUserResponse> = async (
   req,
   res,

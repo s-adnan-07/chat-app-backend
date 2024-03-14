@@ -9,7 +9,6 @@
     "build": "node clean.js && tsc -p tsconfig.build.json",
     "start": "node dist/server.js",
     "start:all": "yarn build && yarn start",
-    "socket": "nodemon src/socket/socket-server.ts",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -34,10 +33,13 @@
     "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.11.25",
+    "@types/supertest": "^6.0.2",
     "@types/ws": "^8.5.10",
     "eslint": "^8.57.0",
     "jest": "^29.7.0",
+    "mockingoose": "^2.16.2",
     "nodemon": "^3.1.0",
+    "supertest": "^6.3.4",
     "ts-jest": "^29.1.2",
     "tsx": "^4.7.1",
     "typescript": "^5.4.2"

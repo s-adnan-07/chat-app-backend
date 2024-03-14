@@ -18,7 +18,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     error,
   }
 
-  res.status(statusCode).send(responseObject)
+  res.status(statusCode).json(responseObject)
 }
 
 export default globalErrorHandler
